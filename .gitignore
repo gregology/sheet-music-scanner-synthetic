@@ -1,0 +1,11 @@
+.venv/
+out/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Real scores: the lines read from them are bulk, made by `python -m sheet_synth.scores`. Their source and licence are committed beside them.
+scores/*/*.json.gz
+scores/*/index.json
+scores/*/*/
+scores/*/*.npy
