@@ -2,7 +2,7 @@
 
 This makes fake phone photos of sheet music, each with its exact score, to train a model that reads a photo of a page into a score on an iPhone. A page of music, made up here or cut from a real score, is engraved, marked in pencil, printed on paper, bent, laid on a surface in a Blender scene, lit, and photographed by a simulated phone camera. The music is the generator's own data before it's drawn, so the answer for every photo is known exactly. No label comes from a person or from another recogniser.
 
-The model trained on it has never seen a real photo, and reads my 81 iPhone photos of real string-quartet parts with 0.94% of notes wrong ([the model](https://huggingface.co/gregology/sheet-music-scanner), [its code](https://github.com/gregology/sheet-music-scanner-model), [the test set](https://huggingface.co/datasets/gregology/sheet-music-scanner-eval)).
+The model trained on it has never seen a real photo, and reads my 81 iPhone photos of real string-quartet parts with 1.10% of notes wrong, 0.21% after a check that each measure adds up ([the model](https://huggingface.co/gregology/sheet-music-scanner), [its code](https://github.com/gregology/sheet-music-scanner-model), [the test set](https://huggingface.co/datasets/gregology/sheet-music-scanner-eval)).
 
 | | |
 |---|---|
@@ -275,7 +275,7 @@ How many training pages came from PDMX scores with a licence conflict:
 | v2 | 3,017 | 108 | 6,651 | 2,222 (18.5%) |
 | v3-tremolo | | 251 | 1,174 | 575 (28.8%) |
 
-I built v2 and v3 with the conflicts in, trusting each uploader's public-domain marking. I'll leave those pages out of any dataset I publish, and the model card says which training data its weights saw.
+I built v2 and v3 with the conflicts in, trusting each uploader's public-domain marking. The published model, version 1.0, trains without those pages, and a reader trained with them scored the same within the noise between runs. I'll leave them out of any dataset I publish too.
 
 What each dataset changed, for a reader through the same line finder, as the share of notes wrong ([the model's notes](https://github.com/gregology/sheet-music-scanner-model) have every run):
 
@@ -284,6 +284,7 @@ What each dataset changed, for a reader through the same line finder, as the sha
 | v0 and v1 | 6.16% | 2.51% |
 | v0 to v2 | 3.79% | 1.59% |
 | v0 to v2 and v3-tremolo | 3.26% | 0.94% |
+| The same, without the licence-conflict pages (version 1.0) | 3.32% | 1.13% |
 
 On the renders, tremolos between two notes went from 764 of 922 wrong to 498 with the v3-tremolo pages.
 
